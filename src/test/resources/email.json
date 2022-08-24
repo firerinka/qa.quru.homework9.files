@@ -1,0 +1,19 @@
+{
+  "sender": "test@gmail.com",
+  "receivers": ["test1@gmail.com", "test2@gmail.com", "test3@gmail.com"],
+  "subject": "test subject",
+  "attaches": [
+    {
+      "id": 1,
+      "fileName": "image1.png",
+      "size": 1000
+    },
+    {
+      "id": 2,
+      "fileName": "text1.txt",
+      "size": 200
+    }
+  ],
+  "text": "Hello! Have a nice day!",
+  "isSpam": false
+}
