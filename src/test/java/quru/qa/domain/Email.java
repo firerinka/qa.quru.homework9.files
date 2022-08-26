@@ -1,5 +1,7 @@
 package quru.qa.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Email {
     private String sender;
     private String[] receivers;
@@ -48,7 +50,8 @@ public class Email {
         this.text = text;
     }
 
-    public Boolean getIsSpam() {
+    @JsonProperty("isSpam")
+    public Boolean IsSpam() {
         return isSpam;
     }
 
