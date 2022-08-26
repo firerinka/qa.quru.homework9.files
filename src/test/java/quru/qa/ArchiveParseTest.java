@@ -24,8 +24,10 @@ public class ArchiveParseTest {
 
     @Test
     void checkPdfInZipTest() throws IOException {
-        ZipFile zf = new ZipFile(classLoader.getResource(ZIP_NAME).getPath());
-        try (InputStream entryStream = zf.getInputStream(zf.getEntry(PDF_NAME))) {
+        try (
+                ZipFile zf = new ZipFile(classLoader.getResource(ZIP_NAME).getPath());
+                InputStream entryStream = zf.getInputStream(zf.getEntry(PDF_NAME))
+        ) {
             PDF pdf = new PDF(entryStream);
             assertThat(pdf.text).contains("Windows & Linux keymap");
             assertThat(pdf.text).contains("Default macOS keymap");
@@ -34,8 +36,10 @@ public class ArchiveParseTest {
 
     @Test
     void checkXlsxInZipTest() throws IOException {
-        ZipFile zf = new ZipFile(classLoader.getResource(ZIP_NAME).getPath());
-        try (InputStream entryStream = zf.getInputStream(zf.getEntry(XLSX_NAME))) {
+        try (
+                ZipFile zf = new ZipFile(classLoader.getResource(ZIP_NAME).getPath());
+                InputStream entryStream = zf.getInputStream(zf.getEntry(XLSX_NAME))
+        ) {
             XLS xls = new XLS(entryStream);
             assertThat(
                     xls.excel.getSheetAt(0)
@@ -55,9 +59,11 @@ public class ArchiveParseTest {
 
     @Test
     void checkCSVInZipTest() throws Exception {
-        ZipFile zf = new ZipFile(classLoader.getResource(ZIP_NAME).getPath());
-        try (InputStream entryStream = zf.getInputStream(zf.getEntry(CSV_NAME))) {
-            CSVReader csvReader = new CSVReader(new InputStreamReader(entryStream, UTF_8));
+        try (
+                ZipFile zf = new ZipFile(classLoader.getResource(ZIP_NAME).getPath());
+                InputStream entryStream = zf.getInputStream(zf.getEntry(CSV_NAME));
+                CSVReader csvReader = new CSVReader(new InputStreamReader(entryStream, UTF_8))
+        ) {
             List<String[]> csv = csvReader.readAll();
             assertThat(csv).contains(
                     new String[]{"category", "title", "price", "weight"},

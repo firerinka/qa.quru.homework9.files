@@ -18,6 +18,7 @@ public class JsonParseTest {
         InputStream is = classLoader.getResourceAsStream("email.json");
         ObjectMapper objectMapper = new ObjectMapper();
         Email email = objectMapper.readValue(is, Email.class);
+
         assertThat(email.getSender()).isEqualTo("test@gmail.com");
         assertThat(email.getReceivers())
                 .isEqualTo(new String[] {
@@ -27,7 +28,7 @@ public class JsonParseTest {
                 );
         assertThat(email.getSubject()).isEqualTo("test subject");
         assertThat(email.getAttaches().length).isEqualTo(2);
-        assertThat(email.getIsSpam()).isEqualTo(false);
+        assertThat(email.IsSpam()).isEqualTo(false);
         assertThat(email.getText()).isEqualTo("Hello! Have a nice day!");
 
         Attach[] attaches = email.getAttaches();
